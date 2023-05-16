@@ -1,23 +1,21 @@
 <?php
 include_once ROOT . "database/persistance.php";
-include_once(ROOT . 'Views/staticViews/article.php');
+include_once(ROOT . 'Views/article.php');
 
 function articleOfcategorie()
 {
    $categorie_id = 0;
-   $arrayCategorie = [];
    if (isset($_GET["id"])) {
-      if ($_GET["id"] == 0) return fetcher('article');
-      $categorie_id = $_GET["id"];
+      if (is_numeric($_GET["id"]) && $_GET["id"] >= 0)
+         $categorie_id = $_GET["id"];
    }
-   $articles = fetcher('article');
-
-
-   foreach ($articles as $article) {
-      if ($categorie_id == $article['categorie']) {
-         $arrayCategorie[] = $article;
-      }
+   $maxIdCategorie = maxId();
+   if ($maxIdCategorie < $categorie_id) {
+      header("HTTP/1.0 404 page n'existe pas");
+      header("Location:Views/page404.php");
+      exit();
    }
+   $arrayCategorie = getArticles($categorie_id);
    return $arrayCategorie;
 }
 

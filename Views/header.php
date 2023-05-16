@@ -1,7 +1,7 @@
 <?php
 include_once ROOT . "database/persistance.php";
 
-$categories = fetcher('categorie');
+$categories = getCategories();
 array_unshift($categories, array("id" => 0, "libelle" => "Home"));
 $active = 0;
 if (isset($_GET['id'])) {
@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
    </div>
    <nav>
       <ul>
-         <img src="Views/img/logo.png" alt="logo">
+         <img src="src/img/logo.png" alt="logo">
          <?php foreach ($categories as $categorie) : ?>
             <li>
                <a href="index.php?id=<?= $categorie['id'] ?>" <?php if ($categorie['id'] == $active) : ?> class='active' <?php endif; ?>"><?= $categorie['libelle'] ?></a>

@@ -8,12 +8,12 @@ define('ROOT', $_SERVER['DOCUMENT_ROOT'] . '/BlocESP/'); ?>
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Bloc ESP - Page d'accueil</title>
-   <link rel="stylesheet" href="Views/staticViews/style/index.css">
+   <link rel="stylesheet" href="src/style/index.css">
 </head>
 
 <body>
    <?php
-   include_once(ROOT . 'Views/staticViews/header.php');
+   include_once(ROOT . 'Views/header.php');
 
 
    include_once(ROOT . 'Services/handleArticles.php');
@@ -23,7 +23,7 @@ define('ROOT', $_SERVER['DOCUMENT_ROOT'] . '/BlocESP/'); ?>
    <div>
       <?php handleArticles(); ?>
    </div>
-   <?php include_once(ROOT . 'Views/staticViews/footer.php');
+   <?php include_once(ROOT . 'Views/footer.php');
    ?>
 </body>
 
