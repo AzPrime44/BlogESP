@@ -1,6 +1,6 @@
 <?php
-include_once ROOT . "database/persistance.php";
-include_once(ROOT . 'Views/article.php');
+include_once ROOT . "Models/Database/persistance.php";
+include_once(ROOT . 'Views/components/article.php');
 
 function articleOfcategorie()
 {
@@ -15,7 +15,7 @@ function articleOfcategorie()
       header("Location:Views/page404.php");
       exit();
    }
-   $arrayCategorie = getArticles($categorie_id);
+   $arrayCategorie = getArticlesDependingOncategorie($categorie_id);
    return $arrayCategorie;
 }
 
@@ -27,8 +27,7 @@ function handleArticles()
    if (!empty($articles)) {
 
       foreach ($articles as $article) {
-
-
+         //utilise le component afficherArticle pour afficher les articles
          affichierArticle($article['titre'], $article['contenu']);
       }
    } else { ?>

@@ -1,4 +1,5 @@
 <?php
+
 function  connexion()
 {
    $serveur = 'localhost';
@@ -6,7 +7,6 @@ function  connexion()
    $motDePasse = 'passer';
    $baseDeDonnees = 'bloc';
    try {
-
       $connexion = new PDO("mysql:host=$serveur;dbname=$baseDeDonnees", $utilisateur, $motDePasse);
       $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       return $connexion;
@@ -17,39 +17,32 @@ function  connexion()
 
 
 
-function getCategories()
+function getCategoriesOrArticles($categorieOrArticle)
 {
-   $connexion = connexion();
-
    try {
-      $requete = $connexion->prepare('SELECT * FROM categorie');
+      $connexion = connexion();
+      $requete = $connexion->prepare('SELECT * FROM ' . $categorieOrArticle);
       $requete->execute();
       $donnees = $requete->fetchAll();
       return $donnees;
    } catch (PDOException $e) {
-      echo $e->getMessage();
+      echo 'getCategoriesOrArticles  ' . $e->getMessage();
    }
 }
 
-function getArticles(int $categorie_id)
+function getArticlesDependingOncategorie(int $categorie_id)
 {
    $connexion = connexion();
 
    try {
-      if ($categorie_id == 0) {
-         $requete = $connexion->prepare('SELECT * FROM article');
-         $requete->execute();
-         return $requete->fetchAll();
-      } else {
 
-         $requete = $connexion->prepare('SELECT * FROM article WHERE categorie = :categorie_id');
-         $requete->execute([
-            ':categorie_id' => $categorie_id,
-         ]);
-         return $requete->fetchAll();
-      }
+      $requete = $connexion->prepare('SELECT * FROM article WHERE categorie = :categorie_id');
+      $requete->execute([
+         ':categorie_id' => $categorie_id,
+      ]);
+      return $requete->fetchAll();
    } catch (PDOException $e) {
-      echo $e->getMessage();
+      echo 'getArticlesDependingOncategorie  ' . $e->getMessage();
    }
 }
 
