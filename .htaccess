@@ -1,7 +1,6 @@
-# RewriteEngine On
-# RewriteBase /
-# #si ce n'est pas un répertoire
-# RewriteCond %{REQUEST_FILENAME} !-d
-# # Si ce n'est pas un fichier
-# RewriteCond %{REQUEST_FILENAME} !-f
-# RewriteRule ^(.+)$ index.php [QSA,L]
+RewriteEngine On
+RewriteBase /
+
+RewriteCond "%{REQUEST_URI}"  "MonController"
+RewriteRule ^/traitement-([a-z]+)-([0-9]+)$ /Controllers/MonController\.php?methode=$1&id=$2 [L]
+# RewriteRule ^/modifier/([0-9]*)$ /Controllers/MonController\.php?methode=modifier&id=$1 [L]

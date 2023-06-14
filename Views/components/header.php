@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <header class="container-nav">
    <div class="semicontainer">
       <div class="banner">
@@ -14,21 +13,47 @@
                <li>
                   <a href="index.php?id=<?= $categorie['id'] ?>" <?php if ($categorie['id'] == $active) : ?> class='active' <?php endif; ?>"><?= $categorie['libelle'] ?></a>
                </li>
-            <?php endforeach; ?>
-            <li>
-               <a href="Views/inscription.php">S'Inscrirer</a>
-            </li>
+            <?php endforeach;
+            if (isset($_SESSION['LOGIN'])) : ?>
 
+               <li>
+                  <a style="color: #BABBDE" href="Controllers/MonController.php?methode=ajouter">Ajouter un article</a>
+               </li>
+               <li>
+                  <a href="Controllers/loginController.php?logout=true">Se déconnecter</a>
+               </li>
+            <?php else : ?>
+               <li>
+                  <a href="Views/inscription.php">S'Inscrirer</a>
+               </li>
+
+            <?php endif; ?>
          </ul>
       </nav>
    </div>
    <?php if (isset($_SESSION['LOGIN'])) : ?>
       <div class="userProfile">
          <img class="userImage" src="src/img/user2.png" alt="user">
-         <text style="color: white"><?= $_SESSION['LOGIN'] ?></text>
+         <text id="username"><?= $_SESSION['LOGIN'] ?></text>
       </div>
    <?php endif; ?>
 </header>
+<script>
+   var dropdown = document.getElementById('dropdown');
+   var username = document.getElementById('username');
+
+   username.addEventListener('mouseover', function() {
+      dropdown.style.display = 'block';
+   });
+
+   username.addEventListener('mouseout', function() {
+      dropdown.style.display = 'none';
+   });
+
+   function logout() {
+      window.location.href = "../../Controllers/loginController.php?logout=true";
+   }
+</script>
 <style>
    .container-nav {
       background-color: #282c33;
@@ -64,6 +89,12 @@
       flex: 1;
       display: flex;
       flex-direction: row;
+   }
+
+   #username {
+      color: white;
+      padding-left: 10px;
+      margin-top: 8px;
    }
 
    nav ul {

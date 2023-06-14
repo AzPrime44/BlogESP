@@ -33,7 +33,7 @@
       countdown--;
       countdownElement.innerHTML = countdown;
       if (countdown === 0) {
-         window.location.href = "../index.php?id=0";
+         window.location.href = "../index.php";
       }
    }, 1000); // 1000 ms = 1 seconde
 </script>
