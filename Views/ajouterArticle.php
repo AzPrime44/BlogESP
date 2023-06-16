@@ -19,7 +19,7 @@
             <div class="banner">
                <text>Bonjour <?= $_SESSION['LOGIN'] ?> creez un article </text>
             </div>
-            <form method="POST" action="../Controllers/MonController.php?methode=ajouter">
+            <form method="POST" action="/ajouter_article">
                <div>
                   <label for="categorie">Categorie</label>
                   <select name="categorie_id">

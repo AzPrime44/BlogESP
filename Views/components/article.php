@@ -13,8 +13,8 @@ if (!empty($articles)) {
             <?php
             if (isset($_SESSION['LOGIN'])) :
             ?>
-               <a href="Controllers/MonController.php?methode=modifier&id=<?= $article['id'] ?>">modifier</a>
-               <a href="Controllers/MonController.php?methode=supprimer&id=<?= $article['id'] ?>">supprimer</a>
+               <a href="/modifier_article/<?= $article['id'] ?>">modifier</a>
+               <a href="/supprimer_article/<?= $article['id'] ?>">supprimer</a>
             <?php endif; ?>
          </div>
       </article>

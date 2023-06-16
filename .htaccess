@@ -1,6 +1,35 @@
+Options +FollowSymlinks
 RewriteEngine On
 RewriteBase /
 
-RewriteCond "%{REQUEST_URI}"  "MonController"
-RewriteRule ^/traitement-([a-z]+)-([0-9]+)$ /Controllers/MonController\.php?methode=$1&id=$2 [L]
-# RewriteRule ^/modifier/([0-9]*)$ /Controllers/MonController\.php?methode=modifier&id=$1 [L]
+#---------------------------#
+# links for navigation      #
+#---------------------------#
+
+# Réécriture de l'URL pour afficher "article" lorsque index.php est appelé
+RewriteCond "%{REQUEST_URI}" "article"
+RewriteRule "^article/([0-9]+)$"  "index\.php?categorie=$1" [L]
+RewriteRule ^accueille$ index.php [L]
+
+# Inscription
+RewriteCond "%{REQUEST_URI}" "inscription"
+RewriteRule ^inscription$ Views/inscription.php [L]
+
+#---------------------------#
+# links for controllers     #
+#---------------------------#
+
+RewriteRule ^ajouter_article$  Controllers/MonController\.php?methode=ajouter [L]
+
+RewriteRule ^deconnecter$ "Controllers/loginController\.php?logout=true" [L]
+
+RewriteRule ^modifier_article/([0-9]+)$ "Controllers/MonController\.php?methode=modifier&id=$1" [L]
+
+RewriteRule ^supprimer_article/([0-9]+)$ "Controllers/MonController\.php?methode=supprimer&id=$1" [L]
+
+
+#--------------------------------#
+# Réécriture de l'URL lorsqu'il question des categorie
+
+# RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/index\.php [NC]
+# RewriteRule ^index\.php$ articles [R,L]

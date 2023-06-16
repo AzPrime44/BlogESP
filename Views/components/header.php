@@ -5,26 +5,26 @@
       </div>
       <nav>
          <ul>
-            <img src="src/img/logo.png" alt="logo">
+            <img src="../src/img/logo.png" alt="logo">
             <li>
-               <a href="index.php" <?php if (0 == $active) : ?> class='active' <?php endif; ?>">Home</a>
+               <a href="/accueille" <?php if (0 == $active) : ?> class='active' <?php endif; ?>">Home</a>
             </li>
             <?php foreach ($categories as $categorie) : ?>
                <li>
-                  <a href="index.php?id=<?= $categorie['id'] ?>" <?php if ($categorie['id'] == $active) : ?> class='active' <?php endif; ?>"><?= $categorie['libelle'] ?></a>
+                  <a href="/article/<?= $categorie['id'] ?>" <?php if ($categorie['id'] == $active) : ?> class='active' <?php endif; ?>"><?= $categorie['libelle'] ?></a>
                </li>
             <?php endforeach;
             if (isset($_SESSION['LOGIN'])) : ?>
 
                <li>
-                  <a style="color: #BABBDE" href="Controllers/MonController.php?methode=ajouter">Ajouter un article</a>
+                  <a style="color: #BABBDE" href="/ajouter_article">Ajouter un article</a>
                </li>
                <li>
-                  <a href="Controllers/loginController.php?logout=true">Se déconnecter</a>
+                  <a href="/deconnecter">Se déconnecter</a>
                </li>
             <?php else : ?>
                <li>
-                  <a href="Views/inscription.php">S'Inscrirer</a>
+                  <a href="/inscription">S'Inscrirer</a>
                </li>
 
             <?php endif; ?>
@@ -33,27 +33,12 @@
    </div>
    <?php if (isset($_SESSION['LOGIN'])) : ?>
       <div class="userProfile">
-         <img class="userImage" src="src/img/user2.png" alt="user">
+         <img class="userImage" src="../src/img/user2.png" alt="user">
          <text id="username"><?= $_SESSION['LOGIN'] ?></text>
       </div>
    <?php endif; ?>
 </header>
-<script>
-   var dropdown = document.getElementById('dropdown');
-   var username = document.getElementById('username');
 
-   username.addEventListener('mouseover', function() {
-      dropdown.style.display = 'block';
-   });
-
-   username.addEventListener('mouseout', function() {
-      dropdown.style.display = 'none';
-   });
-
-   function logout() {
-      window.location.href = "../../Controllers/loginController.php?logout=true";
-   }
-</script>
 <style>
    .container-nav {
       background-color: #282c33;

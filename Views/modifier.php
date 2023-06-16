@@ -19,7 +19,7 @@
             <div class="banner">
                <text>Bonjour <?= $_SESSION['LOGIN'] ?> Vous allez modifier <?= $titre ?></text>
             </div>
-            <form method="POST" action="../Controllers/MonController.php?methode=modifier&id=<?= $id ?>">
+            <form method="POST" action="/modifier_article/<?= $id ?>">
                <div>
                   <label for="categorie">Categorie</label>
                   <select name="categorie_id">

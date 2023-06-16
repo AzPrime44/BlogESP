@@ -1,5 +1,5 @@
 <?php
-define('ROOT', $_SERVER['DOCUMENT_ROOT'] . '/BlocESP/');
+define('ROOT', 'C:/xampp/htdocs/BlocESP/');
 
 $login = isset($_GET['login']) ? true : false;
 $msgErreur = "";

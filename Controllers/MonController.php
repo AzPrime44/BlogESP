@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-define('ROOT', $_SERVER['DOCUMENT_ROOT'] . '/BlocESP/');
+define('ROOT', 'C:/xampp/htdocs/BlocESP/');
 include_once ROOT . "Models/Database/daoArticleAndCategories.php";
 
 
 function handlerRoutes()
 {
    $categories = getCategoriesOrArticles('categorie');
-   $id = isset($_GET['id']) ? $_GET['id'] : 0;
+   $id = isset($_GET['categorie']) ? $_GET['categorie'] : 0;
    $active = $id;
    $articles = $id == 0 ? getCategoriesOrArticles('article') : getArticlesDependingOncategorie($id);
    include_once(ROOT . 'Views/home.php');
