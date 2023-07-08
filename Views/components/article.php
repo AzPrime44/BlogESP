@@ -27,6 +27,17 @@ if (!empty($articles)) {
       <p style="font-size: 25px;font-style: bold;text-align: center">Pas d'articles pour cette categorie pour le moment , rester a l' écoute 🚀🚀🚀🔥</p>
    </div>
 <?php } ?>
+<div class="pagination">
+   <?php if ($page_actuelle > 1) : ?>
+      <a href="<?= '?page=' . ($page_actuelle - 1) ?>" class="previous">&laquo; Precedent</a>
+   <?php endif; ?>
+
+   Page <?= $page_actuelle ?> sur <?= $total_pages ?>
+
+   <?php if ($page_actuelle < $total_pages) : ?>
+      <a href="<?= '?page=' . ($page_actuelle + 1) ?>" class="next">Suivant &raquo;</a>
+   <?php endif; ?>
+</div>
 <style>
    article {
       flex: 1;
@@ -56,5 +67,32 @@ if (!empty($articles)) {
    .bas a {
       text-decoration: none;
       color: var(--primary);
+   }
+
+   .pagination {
+      /* display: flex; */
+      flex-direction: row;
+      margin-left: 20px;
+   }
+
+   .pagination a {
+      text-decoration: none;
+      display: inline-block;
+      padding: 8px 16px;
+   }
+
+   .pagination a:hover {
+      background-color: #ddd;
+      color: black;
+   }
+
+   .previous {
+      background-color: #f1f1f1;
+      color: black;
+   }
+
+   .next {
+      background-color: #04AA6D;
+      color: white;
    }
 </style>
