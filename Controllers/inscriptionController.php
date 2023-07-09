@@ -1,4 +1,3 @@
-
 <?php
 // inscriptionController.php
 

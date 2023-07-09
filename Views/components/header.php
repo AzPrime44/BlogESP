@@ -10,124 +10,125 @@
                <a href="/accueille" <?php if (0 == $active) : ?> class='active' <?php endif; ?>">Home</a>
             </li>
             <?php foreach ($categories as $categorie) : ?>
-               <li>
-                  <a href="/article/<?= $categorie['id'] ?>" <?php if ($categorie['id'] == $active) : ?> class='active' <?php endif; ?>"><?= $categorie['libelle'] ?></a>
-               </li>
+            <li>
+               <a href="/article/<?= $categorie['id'] ?>" <?php if ($categorie['id'] == $active) : ?> class='active'
+                  <?php endif; ?>"><?= $categorie['libelle'] ?></a>
+            </li>
             <?php endforeach;
             if (isset($_SESSION['LOGIN'])) : ?>
 
-               <li>
-                  <a style="color: #BABBDE" href="/ajouter_article">Ajouter un article</a>
-               </li>
-               <li>
-                  <a href="/deconnecter">Se déconnecter</a>
-               </li>
+            <li>
+               <a style="color: #BABBDE" href="/ajouter_article">Ajouter un article</a>
+            </li>
+            <li>
+               <a href="/deconnecter">Se déconnecter</a>
+            </li>
             <?php else : ?>
-               <li>
-                  <a href="/inscription">S'Inscrirer</a>
-               </li>
+            <li>
+               <a href="/inscription">S'Inscrirer</a>
+            </li>
 
             <?php endif; ?>
          </ul>
       </nav>
    </div>
    <?php if (isset($_SESSION['LOGIN'])) : ?>
-      <div class="userProfile">
-         <img class="userImage" src="../src/img/user2.png" alt="user">
-         <text id="username"><?= $_SESSION['LOGIN'] ?></text>
-      </div>
+   <div class="userProfile">
+      <img class="userImage" src="../src/img/user2.png" alt="user">
+      <text id="username"><?= $_SESSION['LOGIN'] ?></text>
+   </div>
    <?php endif; ?>
 </header>
 
 <style>
-   .container-nav {
-      background-color: #282c33;
-      display: flex;
-      flex-direction: row;
-   }
+.container-nav {
+   background-color: #282c33;
+   display: flex;
+   flex-direction: row;
+}
 
-   .semicontainer {
-      display: flex;
-      flex-direction: column;
-      flex: 9;
-   }
+.semicontainer {
+   display: flex;
+   flex-direction: column;
+   flex: 9;
+}
 
-   .userProfile {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-   }
+.userProfile {
+   display: flex;
+   flex-direction: column;
+   flex: 1;
+}
 
-   .banner p {
-      color: white;
+.banner p {
+   color: white;
 
-      flex: 1;
-      text-align: center;
-      font-size: 30px;
-      align-self: space-around;
-      padding: 10px;
-      margin: 0 auto;
-   }
-
-
-   nav {
-      flex: 1;
-      display: flex;
-      flex-direction: row;
-   }
-
-   #username {
-      color: white;
-      padding-left: 10px;
-      margin-top: 8px;
-   }
-
-   nav ul {
-      flex: 1;
-      padding: 10px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      margin: 0 auto;
-      width: 50%;
-      padding-left: 10%;
-      padding-right: 10%;
-      color: white;
+   flex: 1;
+   text-align: center;
+   font-size: 30px;
+   align-self: space-around;
+   padding: 10px;
+   margin: 0 auto;
+}
 
 
-   }
+nav {
+   flex: 1;
+   display: flex;
+   flex-direction: row;
+}
 
-   nav ul img {
-      width: 20px;
-      height: 20px;
-      padding: 0px;
-      margin: 0;
-   }
+#username {
+   color: white;
+   padding-left: 10px;
+   margin-top: 8px;
+}
 
-   nav ul li {
-      text-decoration: none;
-      list-style: none;
-   }
+nav ul {
+   flex: 1;
+   padding: 10px;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   margin: 0 auto;
+   width: 50%;
+   padding-left: 10%;
+   padding-right: 10%;
+   color: white;
 
-   nav ul li a {
-      text-decoration: none;
-      color: white;
-      cursor: pointer;
 
-   }
+}
 
-   nav ul li a:hover {
-      color: var(--primary)
-   }
+nav ul img {
+   width: 20px;
+   height: 20px;
+   padding: 0px;
+   margin: 0;
+}
 
-   .active {
-      color: var(--primary)
-   }
+nav ul li {
+   text-decoration: none;
+   list-style: none;
+}
 
-   .userImage {
-      width: 60px;
-      height: 60px;
-      padding: 0px;
-      margin: 0;
-   }
+nav ul li a {
+   text-decoration: none;
+   color: white;
+   cursor: pointer;
+
+}
+
+nav ul li a:hover {
+   color: var(--primary)
+}
+
+.active {
+   color: var(--primary)
+}
+
+.userImage {
+   width: 60px;
+   height: 60px;
+   padding: 0px;
+   margin: 0;
+}
 </style>

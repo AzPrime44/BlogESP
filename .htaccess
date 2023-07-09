@@ -19,17 +19,14 @@ RewriteRule ^inscription$ Views/inscription.php [L]
 # links for controllers     #
 #---------------------------#
 
-RewriteRule ^ajouter_article$  Controllers/MonController\.php?methode=ajouter [L]
-
 RewriteRule ^deconnecter$ "Controllers/loginController\.php?logout=true" [L]
 
-RewriteRule ^modifier_article/([0-9]+)$ "Controllers/MonController\.php?methode=modifier&id=$1" [L]
+RewriteRule ^ajouter_article$  "Controllers/contacteController\.php?methode=ajouter" [L]
 
-RewriteRule ^supprimer_article/([0-9]+)$ "Controllers/MonController\.php?methode=supprimer&id=$1" [L]
+RewriteRule ^modifier_article/([0-9]+)$ "Controllers/contacteController\.php?methode=modifier&id=$1" [L]
 
+RewriteRule ^supprimer_article/([0-9]+)$ "Controllers/contacteController\.php?methode=supprimer&id=$1" [L]
 
+RewriteRule ^supperUser$ "Controllers/superUsersController.php" [L]
 #--------------------------------#
-# Réécriture de l'URL lorsqu'il question des categorie
 
-# RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/index\.php [NC]
-# RewriteRule ^index\.php$ articles [R,L]

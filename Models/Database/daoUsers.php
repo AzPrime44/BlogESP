@@ -1,5 +1,5 @@
 <?php
-include_once "daoArticleAndCategories.php";
+include_once "daoConnexion.php";
 
 function manageEmail($email)
 {
@@ -40,4 +40,15 @@ function findUserByEmailAndPassword($email, $password)
    }
 
    return null; // Utilisateur non trouvé ou mot de passe incorrect
+}
+
+
+function getUsers()
+{
+   $connexion = connexion();
+   $requete = $connexion->prepare("SELECT username,email,role FROM users");
+   $requete->execute();
+
+   return $requete->fetchAll();
+
 }
