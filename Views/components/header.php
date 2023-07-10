@@ -20,6 +20,11 @@
             <li>
                <a style="color: #BABBDE" href="/ajouter_article">Ajouter un article</a>
             </li>
+            <?php  if (isset($_SESSION['SuperUser'])) : ?>
+            <li>
+               <a href="/superUser" class="dashboard">dashboard</a>
+            </li>
+            <?php endif; ?>
             <li>
                <a href="/deconnecter">Se déconnecter</a>
             </li>
@@ -29,13 +34,14 @@
             </li>
 
             <?php endif; ?>
+
          </ul>
       </nav>
    </div>
    <?php if (isset($_SESSION['LOGIN'])) : ?>
    <div class="userProfile">
       <img class="userImage" src="../src/img/user2.png" alt="user">
-      <text id="username"><?= $_SESSION['LOGIN'] ?></text>
+      <a id="username"><?= $_SESSION['LOGIN'] ?></a>
    </div>
    <?php endif; ?>
 </header>
@@ -130,5 +136,9 @@ nav ul li a:hover {
    height: 60px;
    padding: 0px;
    margin: 0;
+}
+
+.dashboard {
+   color: #870058
 }
 </style>

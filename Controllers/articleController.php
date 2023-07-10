@@ -4,9 +4,16 @@ session_start();
 define('ROOT', 'C:/xampp/htdocs/BlocESP/');
 include_once ROOT . "Models/Database/daoArticleAndCategories.php";
 
+if (isset($_GET['article'])) {
+   $id = $_GET['article'];
+   $article = getArtcicleDependingOnId($id);
+   include_once(ROOT . 'Views/article.php');
+
+}
 
 //logique pour les actions effectueés par un utilisateur connecté
 if (isset($_SESSION['LOGIN'])) {
+
 
 
    //on recupere l'id de l'article a modifie afin d' obtenir le titre ,contenu ,categorie...

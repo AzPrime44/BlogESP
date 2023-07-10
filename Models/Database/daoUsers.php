@@ -1,36 +1,35 @@
 <?php
 include_once "daoConnexion.php";
 
-function manageEmail($email)
+function manageUsername($username)
 {
 
 
    $connexion = connexion();
-   $requete = $connexion->prepare("SELECT COUNT(*) FROM users WHERE email = :email");
-   $requete->execute(['email' => $email]);
+   $requete = $connexion->prepare("SELECT COUNT(*) FROM users WHERE username = :username");
+   $requete->execute(['username' => $username]);
    $resultat = $requete->fetchColumn();
    return $resultat;
 }
 
-function registerUser($username, $email, $password)
+function registerUser($username, $password)
 {
-   try {
+   // try {
 
-      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-      $connexion = connexion();
-      $requete = $connexion->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
-      $requete->execute(['username' => $username, 'email' => $email, 'password' => $hashedPassword]);
-   } catch (PDOException $e) {
-      echo $e->getMessage();
-   }
+   $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+   $connexion = connexion();
+   $requete = $connexion->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
+   $requete->execute(['username' => $username, 'password' => $hashedPassword]);
+   // } catch (PDOException $e) {
+   //    echo $e->getMessage();
+   // }
 }
 
-function findUserByEmailAndPassword($email, $password)
+function findUserByEmailAndPassword($username, $password)
 {
    $connexion = connexion();
-   $requete = $connexion->prepare("SELECT * FROM users WHERE email = :email");
-   $requete->execute(['email' => $email]);
+   $requete = $connexion->prepare("SELECT * FROM users WHERE username = :username");
+   $requete->execute(['username' => $username]);
 
    $user = $requete->fetch();
 
@@ -46,9 +45,40 @@ function findUserByEmailAndPassword($email, $password)
 function getUsers()
 {
    $connexion = connexion();
-   $requete = $connexion->prepare("SELECT username,email,role FROM users");
+   $requete = $connexion->prepare("SELECT id, username,role FROM users");
    $requete->execute();
 
    return $requete->fetchAll();
+
+}
+function getUser($id)
+{
+   $connexion = connexion();
+   $requete = $connexion->prepare("SELECT username,role FROM users where id= :id");
+   $requete->execute(['id' => $id]);
+   return $requete->fetch();
+
+}
+
+function deleteUser($id)
+{
+   $connexion = connexion();
+   $requete = $connexion->prepare("DELETE from users where id= :id");
+   $requete->execute(['id' => $id]);
+}
+function updateUser($id, $username, $password, $isAdmin)
+{
+   $connexion = connexion();
+   $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+   $requete = $connexion->prepare("UPDATE users set username = :username, password = :password, role = :isAdmin where id = :id");
+   $requete->execute(['username' => $username, 'password' => $hashedPassword, 'isAdmin' => $isAdmin, 'id' => $id]);
+
+}
+function adminAddUser($username, $password, $isAdmin)
+{
+   $connexion = connexion();
+   $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+   $requete = $connexion->prepare("INSERT INTO users (username, password,role) VALUES (:username, :password, :isAdmin)");
+   $requete->execute(['username' => $username, 'password' => $hashedPassword, 'isAdmin' => $isAdmin]);
 
 }

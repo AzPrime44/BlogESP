@@ -1,6 +1,6 @@
 <?php
 
-function checkSubmitteddata($username, $email, $password, $confirmPassword)
+function checkSubmitteddata($username, $password, $confirmPassword)
 {
    $msgErreur = []; // Variable pour stocker les messages d'erreur
 
@@ -10,10 +10,10 @@ function checkSubmitteddata($username, $email, $password, $confirmPassword)
    }
    include_once "../Models/Database/daoUsers.php";
    // Validation de l'unicité de l'email (vérification dans la base de données)
-   $resultat = manageEmail($email);
+   $resultat = manageUsername($username);
 
    if ($resultat > 0) {
-      $msgErreur[] = "Cet email est déjà utilisé, veuillez en choisir un autre";
+      $msgErreur[] = "Cet nom d'utilisateur est déjà utilisé, veuillez en choisir un autre";
    }
 
    // Validation des mots de passe correspondants

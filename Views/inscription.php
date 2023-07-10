@@ -22,19 +22,21 @@ if (isset($_GET['msgErreur'])) {
 <body>
    <div class="container">
       <div class="banner">
-         <?php if ($login) : ?><text> Nous Sommes Ravi de vous compter parmi nous</text><?php else : ?><text> Bienvenu</text><?php endif; ?>
+         <?php if ($login): ?><text> Nous Sommes Ravi de vous compter parmi nous</text>
+         <?php else: ?><text>
+            Bienvenu</text>
+         <?php endif; ?>
       </div>
       <div>
-         <p class="erreur"><?= $msgErreur ?></p>
+         <p class="erreur">
+            <?= $msgErreur ?>
+         </p>
       </div>
-      <form method="POST" action="../Controllers/inscriptionController.php" style="<?php if ($login) : ?>display:none<?php endif; ?>">
+      <form method="POST" action="../Controllers/inscriptionController.php"
+         style="<?php if ($login): ?>display:none<?php endif; ?>">
          <div>
             <label for="username">Nom de l'utilisateur</label>
             <input type="text" name="username" />
-         </div>
-         <div>
-            <label for="email">Email</label>
-            <input type="email" name="email" />
          </div>
          <div>
             <label for="password">Mot de passe</label>
@@ -46,10 +48,11 @@ if (isset($_GET['msgErreur'])) {
          </div>
          <button type="submit">S'inscrire</button>
       </form>
-      <form method="POST" action="../Controllers/loginController.php" style="<?php if ($login) : ?>display:block<?php else : ?> display:none<?php endif; ?>">
+      <form method="POST" action="../Controllers/loginController.php"
+         style="<?php if ($login): ?>display:block<?php else: ?> display:none<?php endif; ?>">
          <div>
-            <label for="email">Email</label>
-            <input type="text" name="email" />
+            <label for="username">Nom de l'utilisateur</label>
+            <input type="text" name="username" />
          </div>
          <div>
             <label for="password">Mot de passe</label>
@@ -57,9 +60,9 @@ if (isset($_GET['msgErreur'])) {
          </div>
          <button type="submit">Se connecter</button>
       </form>
-      <?php if (!$login) : ?>
+      <?php if (!$login): ?>
          <text>Vous avez deja un Compte ? <a href="?login=1">connecter vous</a></text>
-      <?php else : ?>
+      <?php else: ?>
          <text>Vous n'avez pas un Compte ? <a href="?">creez en un</a></text>
       <?php endif; ?>
    </div>

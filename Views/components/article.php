@@ -4,37 +4,53 @@ if (!empty($articles)) {
 
    foreach ($articles as $article) { ?>
       <article>
-         <h3><?= $article['titre'] ?></h3>
-         <p><?= $article['contenu'] ?></p>
-         <div class="bas">
+         <a href="/article">
 
-            <p>Ajouter le : <?= $article['dateCreation'] ?></p>
-            <p>Modifier le :<?= $article['dateModification'] ?></p>
-            <?php
-            if (isset($_SESSION['LOGIN'])) :
-            ?>
-               <a href="/modifier_article/<?= $article['id'] ?>">modifier</a>
-               <a href="/supprimer_article/<?= $article['id'] ?>">supprimer</a>
-            <?php endif; ?>
-         </div>
+            <h3>
+               <?= $article['titre'] ?>
+            </h3>
+            <p>
+               <?= $article['contenu'] ?>
+            </p>
+            <div class="bas">
+               <div class="bas-info">
+
+                  <p>Ajouter le :
+                     <?= $article['dateCreation'] ?>
+                  </p>
+                  <p>Modifier le :
+                     <?= $article['dateModification'] ?>
+                  </p>
+               </div>
+               <?php
+               if (isset($_SESSION['LOGIN'])):
+                  ?>
+                  <a href="/modifier_article/<?= $article['id'] ?>">modifier</a>
+                  <a href="/supprimer_article/<?= $article['id'] ?>">supprimer</a>
+               <?php endif; ?>
+            </div>
+         </a>
       </article>
 
-   <?php
+      <?php
    }
 } else { ?>
 
    <div>
-      <p style="font-size: 25px;font-style: bold;text-align: center">Pas d'articles pour cette categorie pour le moment , rester a l' écoute 🚀🚀🚀🔥</p>
+      <p style="font-size: 25px;font-style: bold;text-align: center">Pas d'articles pour cette categorie pour le moment ,
+         rester a l' écoute 🚀🚀🚀🔥</p>
    </div>
 <?php } ?>
 <div class="pagination">
-   <?php if ($page_actuelle > 1) : ?>
+   <?php if ($page_actuelle > 1): ?>
       <a href="<?= '?page=' . ($page_actuelle - 1) ?>" class="previous">&laquo; Precedent</a>
    <?php endif; ?>
 
-   Page <?= $page_actuelle ?> sur <?= $total_pages ?>
+   Page
+   <?= $page_actuelle ?> sur
+   <?= $total_pages ?>
 
-   <?php if ($page_actuelle < $total_pages) : ?>
+   <?php if ($page_actuelle < $total_pages): ?>
       <a href="<?= '?page=' . ($page_actuelle + 1) ?>" class="next">Suivant &raquo;</a>
    <?php endif; ?>
 </div>
@@ -94,5 +110,18 @@ if (!empty($articles)) {
    .next {
       background-color: #04AA6D;
       color: white;
+   }
+
+   article a {
+      text-decoration: none;
+      color: inherit;
+   }
+
+   .bas-info {
+      color: gray;
+      display: flex;
+      flex-direction: row;
+      margin-right: 20px;
+      gap: 10px;
    }
 </style>

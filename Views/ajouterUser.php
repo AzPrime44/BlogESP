@@ -6,52 +6,29 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Bloc ESP - Page d'accueil</title>
-   <link rel="stylesheet" href="../src/style/form.css">
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 
 <body>
-   <a href="/accueille" class="back"><button>&laquo;--retour a l acueille</button></a>
-   <a href="/ajouter_utilisateur" class="back"><button>+ ajouter un utilisateur</button></a>
+   <a href="/superUser" class="back"><button>&laquo;--retour au tableau de bord</button></a>
    <div class="container">
-      <div class="header">----Nombre d'utilisateurs
-         <?= count($users) ?>-----
-      </div>
-      <table class="table table-striped">
-         <thead>
-            <tr>
-               <th scope="col">ID</th>
-               <th scope="col">username</th>
-               <th scope="col">role</th>
-               <th colspan="2" scope="col">Actions</th>
-            </tr>
-         </thead>
-         <tbody>
-            <?php foreach ($users as $user) { ?>
-               <tr>
-                  <th scope="row">
-                     <?= $user['id'] ?>
-                  </th>
-                  <td>
-                     <?= $user['username'] ?>
-                  </td>
-                  <td>
-                     <?= $user['role'] == "1" ? "Admin" : "utilisateur" ?>
-                  </td>
-                  <?php if ($user['role'] != '1') { ?>
-                     <td>
-                        <a href=<?= "/supprimer_utilisateur/" . $user['id'] ?>>supprimer</a>
-                     </td>
-                     <td>
-                        <a href=<?= "/modifier_utilisateur/" . $user['id'] ?>>modifier</a>
-                     </td>
-                  <?php } ?>
-               </tr>
-            <?php } ?>
-         </tbody>
-      </table>
 
+      <form action="/ajouter_utilisateur" method="POST">
+         <div class="mb-3">
+            <label for="username" class="form-label">username</label>
+            <input type="username" class="form-control" name="username" require>
+         </div>
+         <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="password" require>
+         </div>
+         <div class="mb-2 form-check">
+            <input type="checkbox" name="isAdmin">
+            <label class="form-check-label" for="isAdmin">est un admin ?</label>
+         </div>
+         <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
 
    </div>
 
@@ -66,17 +43,11 @@
    .container {
       padding-top: 30px;
       margin-top: 50px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       border: 1px solid black;
-      /* width: 70%;
-   margin-left: 15%; */
-      background: while 1important;
-   }
-
-   a {
-      text-decoration: none;
+      border: 1px solid black;
+      border-radius: 20px;
+      width: 60%;
+      box-shadow: inset 0 0 0.3em white, 0 0 0.6em rgb(15, 14, 14);
    }
 
    .back button {
@@ -86,14 +57,19 @@
       padding: 5px;
       outline: none;
       cursor: pointer;
-      margin-left: 20px;
    }
 
    .table {
       width: 80%;
    }
 
+   .black burron {
+      margin-left: 20px;
+
+   }
+
    .black {
       text-decoration: none;
+
    }
 </style>
