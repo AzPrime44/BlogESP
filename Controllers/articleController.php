@@ -7,7 +7,7 @@ include_once ROOT . "Models/Database/daoArticleAndCategories.php";
 if (isset($_GET['article'])) {
    $id = $_GET['article'];
    $article = getArtcicleDependingOnId($id);
-   include_once(ROOT . 'Views/article.php');
+   include_once(ROOT . 'Views/checkArticle.php');
 
 }
 

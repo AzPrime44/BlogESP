@@ -7,8 +7,8 @@ RewriteBase /
 #---------------------------#
 
 # Réécriture de l'URL pour afficher "article" lorsque index.php est appelé
-RewriteCond "%{REQUEST_URI}" "article"
-RewriteRule "^article/([0-9]+)$"  "index\.php?categorie=$1" [L]
+RewriteCond "%{REQUEST_URI}" "articles"
+RewriteRule "^articles/([0-9]+)$"  "index\.php?categorie=$1" [L]
 RewriteRule ^accueille$ index.php [L]
 
 # Inscription
