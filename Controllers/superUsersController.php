@@ -20,6 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
          unset($_GET['delete']);
          header('Location: /superUser');
       }
+      if (($_GET['methode'] == "supprimerToken")) {
+         $id = $_GET['id'];
+         supprimerToken($id);
+         unset($_GET['delete']);
+         header('Location: /superUser');
+      }
       if ($_GET['methode'] == 'modifier') {
          $id = $_GET['id'];
          $user = getUser($id);
@@ -29,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
       if ($_GET['methode'] == 'ajouter') {
          include_once(ROOT . "Views/ajouterUser.php");
          exit();
-
       }
    }
 }

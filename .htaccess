@@ -46,4 +46,7 @@ RewriteRule ^modifier_utilisateur/([0-9]+)$ "Controllers/superUsersController.ph
 
 RewriteCond %{REQUEST_METHOD} =GET
 RewriteRule ^supprimer_utilisateur/([0-9]+)$ "Controllers/superUsersController.php?methode=supprimer&id=$1" [L]
+
+RewriteCond %{REQUEST_METHOD} =GET
+RewriteRule ^supprimer_token/([0-9]+)$ "Controllers/superUsersController.php?methode=supprimerToken&id=$1" [L]
 #--------------------------------#

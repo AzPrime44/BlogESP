@@ -12,17 +12,17 @@ function manageUsername($username)
    return $resultat;
 }
 
-function registerUser($username, $password)
+function registerUser($username, $password, $token)
 {
-   // try {
+   try {
 
-   $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-   $connexion = connexion();
-   $requete = $connexion->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
-   $requete->execute(['username' => $username, 'password' => $hashedPassword]);
-   // } catch (PDOException $e) {
-   //    echo $e->getMessage();
-   // }
+      $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+      $connexion = connexion();
+      $requete = $connexion->prepare("INSERT INTO users (username, password,token) VALUES (:username, :password, :token)");
+      $requete->execute(['username' => $username, 'password' => $hashedPassword, 'token' => $token]);
+   } catch (PDOException $e) {
+      echo $e->getMessage();
+   }
 }
 
 function findUserByEmailAndPassword($username, $password)
@@ -45,7 +45,7 @@ function findUserByEmailAndPassword($username, $password)
 function getUsers()
 {
    $connexion = connexion();
-   $requete = $connexion->prepare("SELECT id, username,role FROM users");
+   $requete = $connexion->prepare("SELECT id, username,role ,token FROM users");
    $requete->execute();
 
    return $requete->fetchAll();
@@ -81,4 +81,11 @@ function adminAddUser($username, $password, $isAdmin)
    $requete = $connexion->prepare("INSERT INTO users (username, password,role) VALUES (:username, :password, :isAdmin)");
    $requete->execute(['username' => $username, 'password' => $hashedPassword, 'isAdmin' => $isAdmin]);
 
+}
+
+function supprimerToken($id)
+{
+   $connexion = connexion();
+   $requete = $connexion->prepare("UPDATE users set token = null where id= :id");
+   $requete->execute(['id' => $id]);
 }

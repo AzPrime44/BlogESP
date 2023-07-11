@@ -34,10 +34,10 @@
             <?php
             if (isset($_SESSION['LOGIN'])):
                ?>
-               <p>
-                  <a href="/modifier_article/<?= $article['id'] ?>">modifier</a>
-                  <a href="/supprimer_article/<?= $article['id'] ?>">supprimer</a>
-               </p>
+            <p>
+               <a href="/modifier_article/<?= $article['id'] ?>">modifier</a>
+               <a href="/supprimer_article/<?= $article['id'] ?>">supprimer</a>
+            </p>
             <?php endif; ?>
          </div>
       </article>

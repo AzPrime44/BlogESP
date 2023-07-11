@@ -16,9 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       // Il y a des erreurs, afficher les messages personnalisés
       header('Location: ../Views/inscription.php?msgErreur=' . implode('<br>', $msgErreur));
    } else {
-      registerUser($username, $password);
+      $token = bin2hex(random_bytes(32));
+      registerUser($username, $password, $token);
       session_start();
       $_SESSION['LOGIN'] = $username;
+      $_SESSION['token'] = $token;
       header('Location: ../index.php');
    }
 }

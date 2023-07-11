@@ -1,5 +1,7 @@
 <?php
 session_start();
+include_once "../Models/Services/tokenservices.php";
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    // Récupérer les valeurs soumises du formulaire
    $username = $_POST['username'];
@@ -11,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       if ($user['role'] == "1")
          $_SESSION['SuperUser'] = true;
       $_SESSION['LOGIN'] = $user['username'];
+      $_SESSION['token'] = generateToken($user['id']);
       header('Location: ../index.php');
 
    } else {
