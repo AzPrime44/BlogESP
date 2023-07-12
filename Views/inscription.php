@@ -43,7 +43,7 @@ if (isset($_GET['msgErreur'])) {
             <input type="password" name="password" />
          </div>
          <div>
-            <label for="confirmPassword">Conformer Votre mot de passe</label>
+            <label for="confirmPassword">Confirmer Votre mot de passe</label>
             <input type="password" name="confirmPassword" />
          </div>
          <button type="submit">S'inscrire</button>
@@ -61,9 +61,9 @@ if (isset($_GET['msgErreur'])) {
          <button type="submit">Se connecter</button>
       </form>
       <?php if (!$login): ?>
-         <text>Vous avez deja un Compte ? <a href="?login=1">connecter vous</a></text>
+      <text>Vous avez deja un Compte ? <a href="?login=1">connecter vous</a></text>
       <?php else: ?>
-         <text>Vous n'avez pas un Compte ? <a href="?">creez en un</a></text>
+      <text>Vous n'avez pas un Compte ? <a href="?">creez en un</a></text>
       <?php endif; ?>
    </div>
 </body>
